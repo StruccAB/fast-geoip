@@ -9,7 +9,19 @@ const params = require('./params') as {
 var cacheEnabled = false;
 const ipCache:{[filename:string]:ipBlockRecord[]|indexFile} = {}
 var locationCache:Promise<locationRecord[]>;
-const DATA_DIR = path.join(path.dirname(__dirname), "data");
+/*
+const appDir = path.dirname(require.main.filename);
+console.log('appDir', appDir);
+console.log('cwd', process.cwd());
+console.log('dirname', __dirname);
+
+const DATA_DIR = path.join(path.dirname(__dirname), 'data'); // original
+const DATA_DIR = path.join(process.cwd(), 'node_modules/fast-geoip/data'); // deployed 
+const DATA_DIR = path.join(process.cwd(), '../../node_modules/fast-geoip/data'); // local
+const DATA_DIR = path.join(__dirname, '../../../node_modules/fast-geoip/data'); // deployed
+const DATA_DIR = path.join(appDir, '../../../node_modules/fast-geoip/data'); // local
+*/
+const DATA_DIR = path.join(process.cwd(), '/node_modules/fast-geoip/data/'); // deployed
 
 function enableCache(){
   if(!cacheEnabled){
